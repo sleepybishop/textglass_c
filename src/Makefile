@@ -1,12 +1,13 @@
 CC=gcc
 CFLAGS=-O3 -Wall -g -fPIC
 LDFLAGS=-shared
-LIBFLAGS=
+LIBFLAGS=-lm
 RM=rm -f
 
 INCLUDES= \
 	textglass.h \
-	data/tree.h \
+	data/rax.h \
+	data/rax_malloc.h \
 	data/queue.h \
 	data/list.h \
 	data/hashtable.h \
@@ -21,6 +22,7 @@ SOURCE= \
 	jsonfile.c \
 	memalloc.c \
 	util.c \
+	data/rax.c \
 	data/hashtable.c \
 	data/list.c \
 	jsmn/jsmn.c
