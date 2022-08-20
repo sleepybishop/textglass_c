@@ -401,7 +401,7 @@ char *tg_t_splitget(tg_memalloc *memalloc, tg_transformer *transformer, char *in
 
 	split = tg_list_alloc(10, NULL);
 
-	tg_split(input, strlen(input), seps, 1, split);
+	tg_split_single(input, strlen(input), seps[0], 1, split);
 
 	if(get == -1)
 	{

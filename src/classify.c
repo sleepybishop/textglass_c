@@ -88,7 +88,7 @@ tg_result *tg_classify_fixed(const tg_domain *domain, const char *original, void
 	if (domain->sep_max_len == 1) {
 		tg_split_simple(input, length, domain->token_sep_fc, domain->token_seperator_len, classify->tokens);
 	} else if (domain->token_seperator_len == 1) {
-		tg_split(input, length, domain->token_seperators, domain->token_seperator_len, classify->tokens);
+		tg_split_single(input, length, domain->token_seperators[0], domain->token_seperator_len, classify->tokens);
 	} else {
 		tg_split(input, length, domain->token_seperators, domain->token_seperator_len, classify->tokens);
 	}
