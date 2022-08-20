@@ -19,6 +19,7 @@
 #include "textglass.h"
 
 #include <unistd.h>
+#include <time.h>
 
 static int tg_test_file(tg_domain *domain, tg_jsonfile *test_file, long fixed);
 static void tg_printHelp();
