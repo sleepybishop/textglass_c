@@ -174,6 +174,8 @@ typedef struct
 
 	const char		**token_seperators;
 	long			token_seperator_len;
+	char			*token_sep_fc;
+	size_t			sep_max_len;
 
 	unsigned long		ngram_size;
 
@@ -237,6 +239,8 @@ extern int tg_printd_debug_level;
 void tg_printd(int level, const char* fmt, ...);
 void tg_time_diff(struct timespec *end, struct timespec *start, struct timespec *result);
 void tg_split(char *source, size_t source_len, const char **seps, long sep_length, tg_list *tokens);
+void tg_split_single(char *source, size_t source_len, const char *sep, size_t sep_len, tg_list *tokens);
+void tg_split_simple(char *source, size_t source_len, const char *seps, long sep_length, tg_list *tokens);
 
 
 tg_jsonfile *tg_jsonfile_get(const char *file);

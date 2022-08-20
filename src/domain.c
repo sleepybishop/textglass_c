@@ -182,6 +182,7 @@ static tg_domain *tg_domain_init(tg_jsonfile *pattern, tg_jsonfile *attribute,
 	{
 		domain->token_seperator_len = tokens->size;
 		domain->token_seperators = malloc(sizeof(char*) * domain->token_seperator_len);
+		domain->token_sep_fc = malloc(sizeof(char) * domain->token_seperator_len + 1);
 
 		assert(domain->token_seperators);
 
@@ -189,9 +190,13 @@ static tg_domain *tg_domain_init(tg_jsonfile *pattern, tg_jsonfile *attribute,
 		{
 			token = &tokens[i + 1];
 			domain->token_seperators[i] = token->str;
+			domain->token_sep_fc[i] = token->str[0];
+			size_t token_len = strlen(token->str);
+			domain->sep_max_len = (token_len > domain->sep_max_len) ? token_len:domain->sep_max_len;
 
 			tg_printd(2, "Found tokenSeperators: '%s'\n", token->str);
 		}
+		domain->token_sep_fc[i] = '\0';
 
 		tg_printd(1, "Found %d tokenSeperator(s)\n", domain->token_seperator_len);
 	}
@@ -416,6 +421,7 @@ void tg_domain_free(tg_domain *domain)
 	free(domain->list_slab);
 	free(domain->pattern_slab);
 	free(domain->token_seperators);
+	free(domain->token_sep_fc);
 	tg_hashtable_free(domain->attribute_index);
 	tg_attributes_free(domain->default_attributes);
 	tg_list_free(domain->input_transformers);

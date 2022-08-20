@@ -109,3 +109,39 @@ seperator:
 		tg_list_add(tokens, source + dest_start);
 	}
 }
+
+void tg_split_single(char *source, size_t source_len, const char *sep, size_t sep_length, tg_list *tokens)
+{
+}
+
+void tg_split_simple(char *source, size_t source_len, const char *seps, long sep_length, tg_list *tokens)
+{
+	size_t source_pos = 0;
+	size_t dest_start = 0;
+	size_t dest_end = 0;
+
+	assert(tokens && tokens->magic == TG_LIST_MAGIC);
+
+	if (!seps || !sep_length) {
+		tg_list_add(tokens, source);
+		return;
+	}
+
+	while (source_pos < source_len) {
+		source_pos += strcspn(source + source_pos, seps);
+		dest_end = source_pos;
+
+		if (dest_end - dest_start > 0) {
+			source[dest_end] = '\0';
+			tg_list_add(tokens, source + dest_start);
+		}
+		if (source_pos < source_len)
+			source_pos++;
+		dest_start = dest_end = source_pos;
+	}
+
+	if (dest_end - dest_start > 0) {
+		source[dest_end] = '\0';
+		tg_list_add(tokens, source + dest_start);
+	}
+}
