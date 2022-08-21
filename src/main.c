@@ -302,7 +302,7 @@ static int tg_test_file(tg_domain *domain, tg_jsonfile *test_file, long fixed)
 
 				if(fixed > 0)
 				{
-					result = tg_classify_fixed(domain, input, buf, fixed);
+					result = tg_classify_fixed(domain, input, strlen(input), buf, fixed);
 				}
 				else
 				{

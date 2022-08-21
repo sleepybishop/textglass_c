@@ -261,7 +261,7 @@ void tg_domain_free(tg_domain *domain);
 
 
 tg_result *tg_classify(const tg_domain *domain, const char *original);
-tg_result *tg_classify_fixed(const tg_domain *domain, const char *original, void *buf, size_t available);
+tg_result *tg_classify_fixed(const tg_domain *domain, const char *original, size_t original_len, void *buf, size_t available);
 const char *tg_result_get(tg_result *result, const char *key);
 void tg_result_free(tg_result *result);
 
