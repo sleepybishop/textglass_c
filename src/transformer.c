@@ -341,7 +341,7 @@ static tg_transformer *tg_t_splitget_alloc(jsmntok_t *token)
 {
 	tg_transformer *splitget;
 	jsmntok_t *parameters;
-	const char *type, *get;
+	const char *type = NULL, *get = NULL;
 
 	type = tg_json_get_str(token, "type");
 
