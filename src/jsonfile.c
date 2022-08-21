@@ -44,7 +44,8 @@ tg_jsonfile *tg_jsonfile_get(const char *file)
 	}
 
 	fseek(f, 0L, SEEK_END);
-	jsonfile->json_len = ftell(f);
+	int tmp_pos = ftell(f);
+	jsonfile->json_len = tmp_pos > 0 ? tmp_pos : 0;
 	fseek(f, 0L, SEEK_SET);
 
 	if(!jsonfile->json_len || (sizeof(long) == 4 &&
