@@ -18,7 +18,7 @@
 
 #include "textglass.h"
 
-static void tg_classify_match(tg_classified *classify, const char *token);
+static void tg_classify_match(tg_classified *classify, const char *token, size_t token_len);
 static void tg_classify_free(tg_classified *classify);
 
 static tg_result *tg_result_alloc(tg_attributes *attributes, const char *input, void *buf, size_t available);
@@ -140,7 +140,7 @@ tg_result *tg_classify_fixed(const tg_domain *domain, const char *original, void
 
 			tg_printd(3, "Ngram: '%s'\n", ngram);
 
-			tg_classify_match(classify, ngram);
+			tg_classify_match(classify, ngram, ngram_pos);
 		}
 
 		i++;
@@ -225,7 +225,7 @@ cerror:
 	return result;
 }
 
-static void tg_classify_match(tg_classified *classify, const char *token)
+static void tg_classify_match(tg_classified *classify, const char *token, size_t token_len)
 {
 	tg_pattern *candidate;
 	tg_list *patterns;
@@ -235,7 +235,7 @@ static void tg_classify_match(tg_classified *classify, const char *token)
 	assert(classify && classify->magic == TG_CLASSIFIED_MAGIC);
 	assert(classify->domain && classify->domain->magic == TG_DOMAIN_MAGIC);
 
-	patterns = tg_hashtable_get(classify->domain->patterns, token);
+	patterns = tg_hashtable_get2(classify->domain->patterns, token, token_len);
 
 	if(patterns)
 	{
