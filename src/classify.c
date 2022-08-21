@@ -173,7 +173,7 @@ tg_result *tg_classify_fixed(const tg_domain *domain, const char *original, size
 			continue;
 		}
 
-		tg_printd(3, "Candidate: %s, rank=%d, matched=%zu\n", candidate->pattern_id, rank, i);
+		tg_printd(3, "Candidate: %s, rank=%d, matched=%zu\n", candidate->pattern_id, (int)rank, i);
 
 		if(!winner || rank > wrank || (rank == wrank &&
 			i > winner_length))

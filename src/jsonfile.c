@@ -123,7 +123,7 @@ tg_jsonfile *tg_jsonfile_get(const char *file)
 	}
 
 	tg_printd(1, "Loaded %s file, domain: %s, version: %s, json tokens: %d\n",
-		jsonfile->type, jsonfile->domain, jsonfile->domain_version, jsonfile->token_len);
+		jsonfile->type, jsonfile->domain, jsonfile->domain_version, (int)jsonfile->token_len);
 
 	return jsonfile;
 

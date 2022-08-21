@@ -376,7 +376,7 @@ static tg_transformer *tg_t_splitget_alloc(jsmntok_t *token)
 	}
 
 	tg_printd(5, "Found transformer: %s, delimiter: '%s', get: %d\n",
-		type, splitget->s1, splitget->i1);
+		type, splitget->s1, (int)splitget->i1);
 
 	return splitget;
 }
@@ -505,7 +505,7 @@ static tg_transformer *tg_t_substring_alloc(jsmntok_t *token)
 	}
 
 	tg_printd(5, "Found transformer: %s, start: %d, maxLength: %d\n",
-		type, substring->i1, substring->i2);
+		type, (int)substring->i1, (int)substring->i2);
 
 	return substring;
 }

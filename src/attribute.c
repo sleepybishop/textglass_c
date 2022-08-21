@@ -36,7 +36,7 @@ void tg_attributes_json_index(tg_domain *domain, tg_jsonfile *json_file)
 
 	if(TG_JSON_IS_OBJECT(tokens))
 	{
-		tg_printd(2, "Found %d attribute(s) in file\n", tokens->size);
+		tg_printd(2, "Found %d attribute(s) in file\n", (int)tokens->size);
 
 		for(i = 1; i < tokens[0].skip; i += tokens[i].skip)
 		{

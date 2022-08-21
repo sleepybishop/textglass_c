@@ -198,7 +198,7 @@ static tg_domain *tg_domain_init(tg_jsonfile *pattern, tg_jsonfile *attribute,
 		}
 		domain->token_sep_fc[i] = '\0';
 
-		tg_printd(1, "Found %d tokenSeperator(s)\n", domain->token_seperator_len);
+		tg_printd(1, "Found %d tokenSeperator(s)\n", (int)domain->token_seperator_len);
 	}
 
 	//NGRAM CONCAT SIZE
